@@ -1,30 +1,42 @@
-const env    = require('dotenv').config();
-const fs     = require('fs');
-var myTweets = require('./src/my-tweets');
-var getSong  = require('./src/spotify-this-song')
-var command  = process.argv[2];
+var env          = require('dotenv').config();
+var fs           = require('fs');
+var getTweets     = require('./src/my-tweets');
+var getSong      = require('./src/spotify-this-song');
+var getMovie     = require('./src/movie-this');
+var command      = process.argv[2];
 
-// gets the time that the file is executed
+// used for when a song/movie has more than one word
+var searchString = process.argv[3];
+
+// gets the time that the file is executed to use in log.txt
 var time = new Date().toString();
 
-// info to add to the log file
+// default info to add to the log file
 var log = `${command}: ${time}`;
 
-// adjusts the log if we have more arguments
-if (process.argv[3]) {
-  log = `${command} -- ${process.argv[3]}: ${time}`;
+// adds each argument to a string so you can search for a song that is longer than one word
+if (process.argv.length > 3) {
+  for (i = 4; i < process.argv.length; i++) {
+    searchString += '+' + process.argv[i];
+  }
+  // adds all the arguments to the log
+  log = `${command} -- ${searchString}: ${time}`;
 }
 
 // appends the log info to user.log
-fs.appendFile('user.log', log + '\n', function(error) {
+fs.appendFile('log.txt', log + '\n', function(error) {
   if (error) {
-    console.log(error)
+    return console.log(error)
   }
 });
 
 // runs the function for the appropriate command
 if (command === 'my-tweets') {
-  myTweets.getTweets();
+  getTweets.myTweets();
+
 } else if (command === 'spotify-this-song') {
-  getSong.getSong(process.argv[3]);
+  getSong.spotifyThis(searchString);
+
+} else if (command === 'movie-this') {
+  getMovie.movieThis(searchString);
 }
