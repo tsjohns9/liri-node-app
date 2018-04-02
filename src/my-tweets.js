@@ -10,7 +10,7 @@ var myTweets = function () {
 
   client.get('statuses/user_timeline', params, function (error, tweets, response) {
     if (error) {
-      return console.log(error);
+      return console.log(error[0].message);
     }
     return tweets.forEach(a => {
       console.log(a.text);

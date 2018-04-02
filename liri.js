@@ -1,11 +1,11 @@
 var env          = require('dotenv').config();
 var fs           = require('fs');
-var getTweets     = require('./src/my-tweets');
+var getTweets    = require('./src/my-tweets');
 var getSong      = require('./src/spotify-this-song');
 var getMovie     = require('./src/movie-this');
 var command      = process.argv[2];
 
-// used for when a song/movie has more than one word
+// the song/movie the user is searching for. Contains the first word. If additional words exist, they get added later.
 var searchString = process.argv[3];
 
 // gets the time that the file is executed to use in log.txt
