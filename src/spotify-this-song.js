@@ -11,7 +11,7 @@ var spotifyThis = function(song) {
 
   spotify.search(params, function(error, response) {
     if (error) {
-      return console.log('An error occurred.')
+      return console.log('An error occurred.');
     }
     
     // only runs if a song is returned

@@ -3,6 +3,7 @@ var fs           = require('fs');
 var getTweets    = require('./src/my-tweets');
 var getSong      = require('./src/spotify-this-song');
 var getMovie     = require('./src/movie-this');
+var getRandom    = require('./src/do-what-it-says');
 var command      = process.argv[2];
 
 // the song/movie the user is searching for. Contains the first word. If additional words exist, they get added later.
@@ -26,7 +27,7 @@ if (process.argv.length > 3) {
 // appends the log info to user.log
 fs.appendFile('log.txt', log + '\n', function(error) {
   if (error) {
-    return console.log(error)
+    return console.log(error);
   }
 });
 
@@ -39,4 +40,8 @@ if (command === 'my-tweets') {
 
 } else if (command === 'movie-this') {
   getMovie.movieThis(searchString);
+}
+
+else if (command === 'do-what-it-says') {
+  getRandom.randomThis();
 }

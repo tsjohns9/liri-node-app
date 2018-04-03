@@ -7,7 +7,7 @@ var movieThis = function(movie) {
   var queryUrl = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=c60e4c40";
   
   request(queryUrl, function (err, response, body) {
-    var body = JSON.parse(body)
+    var body = JSON.parse(body);
 
     // Runs if the server gave a successful response
     // Check body.Response to prevent the code from running if a movie is not found
@@ -27,13 +27,13 @@ var movieThis = function(movie) {
       } 
   
       else {
-        console.log('Please search for a movie.')
+        console.log('Please search for a movie.');
       }
     } 
     
     // runs when an error occurs
     else {
-      console.log(body.Error)
+      console.log(body.Error);
     }
   });
 
