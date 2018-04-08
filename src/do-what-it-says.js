@@ -2,8 +2,9 @@ var fs = require('fs');
 var getSong = require('./spotify-this-song');
 var getMovie = require('./movie-this');
 
+// gets the data from random.txt to make a search
 var randomThis = function() {
-  return fs.readFile("random.txt", "utf8", function (error, data) {
+  fs.readFile("random.txt", "utf8", function (error, data) {
 
     // If the code experiences any errors it will log the error to the console.
     if (error) {
@@ -20,7 +21,7 @@ var randomThis = function() {
     else if (dataArr[0] === 'movie-this') {
       getMovie.movieThis(dataArr[1]);
     }
-    
+
   });
 };
 

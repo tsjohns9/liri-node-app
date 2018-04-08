@@ -16,7 +16,7 @@ var myTweets = function () {
       console.log(a.text);
       console.log(a.created_at);
       console.log('-----');
-    })
+    });
   });
 };
 
