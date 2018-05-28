@@ -1,10 +1,10 @@
-var env       = require('dotenv').config();
-var fs        = require('fs');
-var getTweets = require('./src/my-tweets');
-var getSong   = require('./src/spotify-this-song');
-var getMovie  = require('./src/movie-this');
-var getRandom = require('./src/do-what-it-says');
-var command   = process.argv[2];
+var env = require('dotenv').config();
+var fs = require('fs');
+var getTweets = require('./js/my-tweets');
+var getSong = require('./js/spotify-this-song');
+var getMovie = require('./js/movie-this');
+var getRandom = require('./js/do-what-it-says');
+var command = process.argv[2];
 
 // the song/movie the user is searching for. Contains the first word. If additional words exist, they get added later.
 var searchString = process.argv[3];
@@ -34,18 +34,12 @@ fs.appendFile('log.txt', log + '\n', function(error) {
 // runs the function for the appropriate command
 if (command === 'my-tweets') {
   getTweets.myTweets();
-
 } else if (command === 'spotify-this-song') {
   getSong.spotifyThis(searchString);
-
 } else if (command === 'movie-this') {
   getMovie.movieThis(searchString);
-}
-
-else if (command === 'do-what-it-says') {
+} else if (command === 'do-what-it-says') {
   getRandom.randomThis();
-}
-
-else {
+} else {
   console.log('Command not recognized!');
 }
